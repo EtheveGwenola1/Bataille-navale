@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1476891214 source:c:\users\nola\onedrive\documents\langagec\bataille navale\bataille navale3\bataillenavale3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
