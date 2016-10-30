@@ -70,19 +70,8 @@ void placementbateaux(int map[18][24][2], int joueur,int taillebateau){
     x = doRand(0,17-taillebateau);
     y = doRand(0,23-taillebateau);
 
-/*    for (s==0; s<taillebateau; s++){
-            if (t==0 && map[x+i][y][joueur]==0){
-                s= s++;
-            }
-
-            if(t==1 &&map[x][y+j][joueur]==0){
-                s= s++;
-            }
-    }
-*/
-
     /* placement du bateau à l'interieur de la carte à la verticale */
-    if (t== 0 /*&& s== taillebateau */){
+    if (t== 0){
             for (i=0;i<taillebateau;i++){
                 if(map[x+i][y][joueur]==0 && map[x+i][y][joueur]<18 && map[x+i][y][joueur]>=0){
                 map[x+i][y][joueur]=taillebateau;
@@ -91,7 +80,7 @@ void placementbateaux(int map[18][24][2], int joueur,int taillebateau){
     }
 
     /* placement du bateau à l'interieur de la carte à l'horizontale*/
-    if (t== 1 /*&& s== taillebateau */){
+    if (t== 1){
         for (j=0;j<taillebateau;j++){
                 if(map[x][y+j][joueur]==0 && map[x][y+j][joueur]<18 && map[x][y+j][joueur]>=0){
                 map[x][y+j][joueur]=taillebateau;
@@ -110,16 +99,7 @@ void placementbateauxjoueur(int map[18][24][2], int joueur,int taillebateau){
     int s=0;
     int k=0;
 
-/*    for (s==0; s<taillebateau; s++){
-            if (t==0 && map[x+i][y][joueur]==0){
-                s= s++;
-            }
 
-            if(t==1 &&map[x][y+j][joueur]==0){
-                s= s++;
-            }
-    }
-*/
 
     /* placement du bateau à l'interieur de la carte à la verticale */
     if (t== 0 /*&& s== taillebateau */){
@@ -155,14 +135,15 @@ void positionbateau (int identifiant){
         scanf ("%d", &identifiant);
         fflush (stdin);
         printf ("\n");
+        /* bateau choisi */
             while(1>identifiant || identifiant>5){
                 printf ("saisir un chiffre valable\n");
                 scanf ("%d", &identifiant);
                 fflush (stdin);
             }
+            /* placement du bateau en X */
             printf ("saisir X \n");
             scanf("%d", &x);
-
             while (0>x ||x>25){
                 printf ("saisir un chiffre valable \n");
                 scanf ("%d", &x);
@@ -170,6 +151,7 @@ void positionbateau (int identifiant){
             fflush (stdin);
             printf ("\n");
 
+            /* placement du bateau en y */
             printf ("entrez ca position en Y \n");
             scanf ("%d", &y);
             while (0>y || y>18){
@@ -179,6 +161,7 @@ void positionbateau (int identifiant){
             fflush (stdin);
             printf ("\n");
 
+            /* placement du bateau à l'horizontale et à la verticale */
             printf ("pour les placer horizontalement tape 0, pour le placer verticalement tape 1 \n");
             scanf ("%d", &t);
             while (t>1 || t<0){
@@ -199,17 +182,11 @@ void attaque (int map [18][24][2], int joueur){
     int tir = 0;
     int taillebateau;
 
+    /* placement du tir en aléatoire*/
     t = doRand (0,1);
     x = doRand(0,17);
     y = doRand(0,23);
 
-    /*do {
-        x = doRand(0,17);
-        y = doRand(0,23);
-    }while{
-        (x &&y == positionbateau){
-    }
-    }*/
 }
 
 void iaVsia (){
@@ -380,7 +357,8 @@ void joueurVSia (){
     printf ("\n");
     positionbateau (identifiant);
 
-     /*switch (identifiant){
+    /* placement bateau joueur */
+     switch (identifiant){
         case 1:
         placementbateauxjoueur(map[MAP_H][MAP_W][MAP_PLAYERS], joueur, taillebateau);
         affichemap(map[18][24][2], joueur);
@@ -398,7 +376,9 @@ void joueurVSia (){
         placementbateauxjoueur( map[MAP_H][MAP_W][MAP_PLAYERS], joueur, taillebateau);
         affichemap(map[18][24][2], joueur);
         break;
-    } */
+    }
+
+    /*placement beateau IA */
     placementbateauxjoueur(map,joueur1,CORVETTE);
     placementbateauxjoueur(map,joueur1,DESTROYER);
     placementbateauxjoueur(map,joueur1,DESTROYER);
@@ -407,22 +387,10 @@ void joueurVSia (){
     placementbateauxjoueur(map,joueur1,PORTEAVION);
     printf("\n");
     /*affiche la position des bateau du ia1*/
-    printf("MAP JOUEUR 1\n");
-    placementbateauxjoueur(map,joueur2,CORVETTE);
-    placementbateauxjoueur(map,joueur2,DESTROYER);
-    placementbateauxjoueur(map,joueur2,DESTROYER);
-    placementbateauxjoueur(map,joueur2,CROISEUR);
-    placementbateauxjoueur(map,joueur2,CROISEUR);
-    placementbateauxjoueur(map,joueur2,PORTEAVION);
+    printf("MAP IA1\n");
     affichemap(map,joueur1);
     printf("\n");
-    /*affiche la position des bateaux du ia2*/
-    printf("MAP JOUEUR 2\n");
-    affichemap(map,joueur2);
     fflush (stdin);
-    getchar ();
-    affichemap(map,joueur);
-    printf("\n");
 }
 
 int main()
